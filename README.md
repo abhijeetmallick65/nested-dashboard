@@ -232,6 +232,3 @@ Each chart is rendered independently and presented in the order received from th
 
 ---
 
-## Summary
-
-The flat dashboard is a lightweight, high-performance view designed to quickly render metric data without nesting or layout complexity. It complements the nested dashboard by offering a simple, panel-based alternative for time-series visualization.
