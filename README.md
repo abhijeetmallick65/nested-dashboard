@@ -1,27 +1,77 @@
-# AngularApp
+UI:https://mini-grafana.netlify.app/
+API:https://dashboard-api-88av.onrender.com/sections https://dashboard-api-88av.onrender.com/flat
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
 
-## Development server
+Nested Section Rendering - Architecture and Logic
+This document explains how the nested section system works in the Angular dashboard application. The design allows charts and sections to be organized and rendered recursively, entirely based on a structured JSON configuration.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Overview
+Each section in the dashboard can contain:
 
-## Code scaffolding
+1. A set of metrics, which are displayed as charts
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. A list of nested sections, each of which follows the same structure
 
-## Build
+3. A layout setting that determines if its children are rendered **vertically or horizontally**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+section interface
+interface Section {
+  id: number | string;
+  layout: 'horizontal' | 'vertical';
+  metrics: Metric[];
+  sections: Section[];
+}
 
-## Running unit tests
+metric interface
+interface Metric {
+  metricName: string;
+  chartType: string;
+  job: string;
+  data: [number, string][];
+}
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+NestedDashboardComponent
+This is the top-level entry point for rendering the nested layout. It:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Loads the sections.json from the backend (via HTTP)
 
-## Further help
+Iterates through the top-level sections
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Renders each one using SectionComponent
+
+SectionComponent
+This is the core of the recursive rendering. It receives a section object as an input and:
+
+Renders its own metrics as charts
+
+Recursively renders any child sections
+
+Handles layout logic for horizontal or vertical direction
+
+Provides buttons to override layout at runtime
+
+Each section is completely self-contained, meaning layout changes do not affect parent or sibling sections.
+
+Layout Logic
+Every section has a default layout (horizontal or vertical) defined in the JSON. The component also supports runtime layout switching using local state.
+
+The layout is applied using Flexbox via Angular's [ngStyle]:
+<div [ngStyle]="{ 'flex-direction': getFlexDirection() }">
+The direction is determined with:
+getFlexDirection(): string {
+  if (currentLayout === 'horizontal') return 'row';
+  if (currentLayout === 'vertical') return 'column';
+  return section.layout === 'horizontal' ? 'row' : 'column';
+}
+
+
+Chart Rendering
+Each metric is passed into ChartWrapperComponent, which uses Angular’s ngSwitch to render the appropriate chart component.
+
+Layout Overrides
+Each section includes three buttons:
+
+Original, Horizontal, Vertical
+
+Clicking one sets currentLayout, which temporarily overrides the layout defined in JSON. This affects only that section and is preserved locally in the component.
