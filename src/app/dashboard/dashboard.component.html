@@ -33,9 +33,7 @@
   
     <div #pdfContainer>
       <div *ngFor="let m of filteredMetrics" class="mb-4">
-        <!-- 🔁 Chart Type + Compare Toggle -->
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <!-- Chart type switch -->
           <select class="form-select w-auto"
                   (change)="handleChartTypeChange($event, m.metric.__name__)">
             <option *ngFor="let chartType of chartTypes"
@@ -44,7 +42,6 @@
             </option>
           </select>
   
-          <!-- Compare Toggle -->
           <button class="btn"
                   [ngClass]="compareList.includes(m.metric.__name__) ? 'btn-success' : 'btn-outline-secondary'"
                   (click)="toggleCompare(m.metric.__name__)">
@@ -52,7 +49,6 @@
           </button>
         </div>
   
-        <!-- Chart Render -->
         <div class="p-4 rounded shadow-sm chart-wrapper">
           <app-chart-wrapper
           [metricName]="m.metric.__name__"

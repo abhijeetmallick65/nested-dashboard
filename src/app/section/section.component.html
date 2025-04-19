@@ -1,5 +1,5 @@
 <div class="section-wrapper">
-  <!-- Section Header -->
+
   <div class="section-header">
     <div>
       <strong>Section {{ section.id }}</strong> (Layout: {{ getFlexDirection() }})
@@ -11,7 +11,6 @@
     </div>
   </div>
 
-  <!-- Section Content -->
   <div class="section-block" [ngStyle]="{ 'flex-direction': getFlexDirection() }">
     <!-- Charts -->
     <ng-container *ngFor="let metric of section.metrics">
