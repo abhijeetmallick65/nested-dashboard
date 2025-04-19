@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #f7faff;
+    color: #003366;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .chart-wrapper {
+    background-color: #ffffff;
+    border: 1px solid #e0e6ed;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    color: #003366;
+  }
+  
+  input.form-control,
+  select.form-select {
+    border-color: #007bff;
+  }
+  
+  button.btn-outline-light {
+    color: #007bff;
+    border-color: #007bff;
+  }
+  
+  button.btn-outline-light:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  

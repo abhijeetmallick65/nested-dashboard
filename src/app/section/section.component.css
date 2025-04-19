@@ -1,0 +1,48 @@
+.section-wrapper {
+  border: 2px solid #1976d2;
+  border-radius: 12px;
+  background-color: #f5faff;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e3f2fd;
+  padding: 10px 14px;
+  border-bottom: 1px solid #90caf9;
+  font-size: 14px;
+}
+
+.section-block {
+  display: flex;
+  padding: 12px;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.section-block::-webkit-scrollbar {
+  height: 8px;
+}
+.section-block::-webkit-scrollbar-thumb {
+  background-color: #90caf9;
+  border-radius: 4px;
+}
+
+.layout-controls button {
+  padding: 4px 10px;
+  border: 1px solid #1976d2;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.layout-controls button.active {
+  background-color: #1976d2;
+  color: white;
+}

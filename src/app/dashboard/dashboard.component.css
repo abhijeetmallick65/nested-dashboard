@@ -1,0 +1,14 @@
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 1rem;
+  }
+  
+  .chart-card {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+  }
+  

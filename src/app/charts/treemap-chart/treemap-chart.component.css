@@ -1,0 +1,11 @@
+:host {
+    display: block;
+    height: 100%;
+  }
+  
+  .demo-chart {
+    width: 60vw;
+    height: 300px;
+    min-height: 300px;
+  }
+  

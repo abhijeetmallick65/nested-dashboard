@@ -1,0 +1,29 @@
+<div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5);">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">View Metric: {{ metric?.__name__ }}</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+
+        </div>
+  
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Select Chart Types:</label>
+            <div class="d-flex flex-wrap gap-2">
+              <button 
+                *ngFor="let type of chartTypes" 
+                class="btn btn-outline-primary"
+                [class.active]="isSelected(type)"
+                (click)="toggleChart(type)">
+                {{ type }}
+              </button>
+            </div>
+          </div>
+  
+
+        </div>
+      </div>
+    </div>
+  </div>
+  

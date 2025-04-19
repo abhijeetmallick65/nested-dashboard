@@ -1,0 +1,26 @@
+<div class="section-wrapper">
+  <!-- Section Header -->
+  <div class="section-header">
+    <div>
+      <strong>Section {{ section.id }}</strong> (Layout: {{ getFlexDirection() }})
+    </div>
+    <div class="layout-controls">
+      <button (click)="setLayout('original')" [class.active]="currentLayout === 'original'">Original</button>
+      <button (click)="setLayout('horizontal')" [class.active]="currentLayout === 'horizontal'">Horizontal</button>
+      <button (click)="setLayout('vertical')" [class.active]="currentLayout === 'vertical'">Vertical</button>
+    </div>
+  </div>
+
+  <!-- Section Content -->
+  <div class="section-block" [ngStyle]="{ 'flex-direction': getFlexDirection() }">
+    <!-- Charts -->
+    <ng-container *ngFor="let metric of section.metrics">
+      <app-chart-wrapper [metric]="metric"></app-chart-wrapper>
+    </ng-container>
+
+    <!-- Subsections -->
+    <ng-container *ngFor="let subSection of section.sections">
+      <app-section [section]="subSection"></app-section>
+    </ng-container>
+  </div>
+</div>

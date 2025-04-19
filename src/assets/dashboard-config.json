@@ -1,0 +1,13 @@
+[
+    { "metricName": "cpu_usage_seconds_total", "chartType": "line" },
+    { "metricName": "memory_usage_bytes", "chartType": "bar" },
+    { "metricName": "disk_io_ops_total", "chartType": "pie" },
+    { "metricName": "response_time_seconds", "chartType": "area" },
+    { "metricName": "error_rate_percentage", "chartType": "scatter" },
+    { "metricName": "latency_ms", "chartType": "gauge" },
+    { "metricName": "request_count_total", "chartType": "radar" },
+    { "metricName": "cpu_idle_percentage", "chartType": "heatmap" },
+    { "metricName": "network_bandwidth_bytes", "chartType": "treemap" },
+    { "metricName": "traffic_inbound_rate", "chartType": "sankey" }
+  ]
+  

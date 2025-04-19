@@ -1,0 +1,81 @@
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+
+@Component({
+  selector: 'app-radar-chart',
+  templateUrl: './radar-chart.component.html',
+  styleUrls: ['./radar-chart.component.css']
+})
+export class RadarChartComponent implements OnChanges {
+  @Input() metricName!: string;
+  @Input() values: any[] = [];
+
+  chartOptions: any;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['values'] || changes['metricName']) {
+      this.generateChartOptions();
+    }
+  }
+
+  generateChartOptions(): void {
+    if (!this.values || this.values.length === 0) {
+      this.chartOptions = {};
+      return;
+    }
+
+    const parsedValues = this.values.map(v => parseFloat(v[1]));
+    const min = Math.min(...parsedValues);
+    const max = Math.max(...parsedValues);
+    const avg = +(parsedValues.reduce((a, b) => a + b, 0) / parsedValues.length).toFixed(2);
+
+    const indicators = this.values.map(v => ({
+      name: new Date(v[0] * 1000).toLocaleTimeString(),
+      max: max + 10 // buffer for radar scale
+    }));
+
+    this.chartOptions = {
+      title: {
+        text: this.metricName,
+        left: 'center',
+        textStyle: { fontWeight: 'bold', fontSize: 16 }
+      },
+      tooltip: { trigger: 'item' },
+      toolbox: {
+        feature: {
+          saveAsImage: {},
+          restore: {}
+        },
+        right: '10%'
+      },
+      graphic: {
+        type: 'group',
+        left: '10%',
+        top: 0,
+        children: [
+          { type: 'text', style: { text: `Min: ${min}`, fill: '#bbb', font: '12px sans-serif' }, top: 0 },
+          { type: 'text', style: { text: `Max: ${max}`, fill: '#bbb', font: '12px sans-serif' }, top: 18 },
+          { type: 'text', style: { text: `Avg: ${avg}`, fill: '#bbb', font: '12px sans-serif' }, top: 36 }
+        ]
+      },
+      radar: {
+        indicator: indicators,
+        shape: 'circle',
+        splitLine: { lineStyle: { color: ['#aaa'] } },
+        axisLine: { lineStyle: { color: '#999' } }
+      },
+      series: [
+        {
+          name: this.metricName,
+          type: 'radar',
+          smooth: true,
+          data: [
+            {
+              value: parsedValues,
+              name: this.metricName
+            }
+          ]
+        }
+      ]
+    };
+  }
+}

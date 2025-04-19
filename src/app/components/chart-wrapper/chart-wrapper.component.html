@@ -1,0 +1,17 @@
+<div [ngSwitch]="chartType">
+    <app-line-chart *ngSwitchCase="'line'" [metricName]="metricName" [values]="values" ></app-line-chart>
+    <app-bar-chart *ngSwitchCase="'bar'" [metricName]="metricName" [values]="values"></app-bar-chart>
+    <app-pie-chart *ngSwitchCase="'pie'" [metricName]="metricName" [values]="values"></app-pie-chart>
+    <app-area-chart *ngSwitchCase="'area'" [metricName]="metricName" [values]="values"></app-area-chart>
+    <app-radar-chart *ngSwitchCase="'radar'" [metricName]="metricName" [values]="values"></app-radar-chart>
+    <app-heatmap-chart *ngSwitchCase="'heatmap'" [metricName]="metricName" [values]="values"></app-heatmap-chart>
+    <app-scatter-chart *ngSwitchCase="'scatter'" [metricName]="metricName" [values]="values"></app-scatter-chart>
+    <app-gauge-chart *ngSwitchCase="'gauge'" [metricName]="metricName" [values]="values"></app-gauge-chart>
+    <app-treemap-chart *ngSwitchCase="'treemap'" [metricName]="metricName" [values]="values"></app-treemap-chart>
+    <app-sankey-chart *ngSwitchCase="'sankey'" [metricName]="metricName" [values]="values"></app-sankey-chart>
+  
+    <p *ngSwitchDefault>Unsupported chart type: {{ chartType }}</p>
+  </div>
+
+
+
