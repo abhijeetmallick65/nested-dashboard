@@ -20,12 +20,12 @@ constructor(){
   console.log('compare modal constructor',this.compareList,this.selectedCompareList,this.chartOverrides,this.chartTypes,this.allMetricNames);
 }
 ngOnInit(): void {
-    console.log('🔁 Initializing Compare Modal',this.compareList,this.selectedCompareList,this.chartOverrides,this.chartTypes,this.allMetricNames);
+    console.log('Initializing Compare Modal',this.compareList,this.selectedCompareList,this.chartOverrides,this.chartTypes,this.allMetricNames);
 }
 ngOnChanges(changes: SimpleChanges): void {
-  console.log('🔁 Input changes:', changes);
+  console.log('Input changes:', changes);
   if (changes['compareList']) {
-    console.log('📥 compareList:', this.compareList);
+    console.log('compareList:', this.compareList);
   }
 }
   removeFromCompare(metricName: string) {

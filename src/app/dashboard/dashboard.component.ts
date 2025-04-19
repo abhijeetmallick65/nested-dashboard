@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
     const now = Date.now();
     const cutoff = rangeToSeconds[rangeKey] * 1000; 
   
-    console.log('⏱️ Selected Range:', rangeKey, 'Cutoff Time (ms):', cutoff);
+    console.log('Selected Range:', rangeKey, 'Cutoff Time (ms):', cutoff);
   
     this.metrics = this.originalMetrics.map(metric => {
       const filteredValues = metric.values.filter((v: any) => {
@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
         return (now - timestampMs) <= cutoff;
       });
   
-      console.log('📉', metric.metric?.__name__, 'Filtered Values:', filteredValues);
+      console.log(metric.metric?.__name__, 'Filtered Values:', filteredValues);
   console.log('new metric:', { ...metric, values: filteredValues });
       return { ...metric, values: filteredValues };
     });
