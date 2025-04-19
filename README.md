@@ -1,5 +1,3 @@
-Absolutely — here’s your entire README, cleanly formatted in Markdown and pasted below:
-
 ---
 
 # Nested Section Rendering - Architecture and Logic
