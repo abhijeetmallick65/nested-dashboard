@@ -1,4 +1,4 @@
-# Nested Section Rendering - Architecture and Logic
+# Nested Section Rendering
 
 **UI**: [https://mini-grafana.netlify.app](https://mini-grafana.netlify.app)  
 **API**:  
