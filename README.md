@@ -108,3 +108,130 @@ Each section includes three buttons:
 
 Clicking one sets `currentLayout`, which temporarily overrides the layout defined in JSON. This affects only that section and is preserved locally in the component.
 
+
+---
+
+# Flat Dashboard - Architecture and Logic
+
+This document explains the structure and rendering logic behind the **flat dashboard view** of the Angular application. This version displays a list of metrics as independent charts, without nested sections or recursive rendering.
+
+---
+
+## Overview
+
+The flat dashboard is built to provide a simple, high-performance interface for rendering time-series metrics directly. Each metric appears as an independent chart panel, using data fetched from a static or hosted JSON API.
+
+---
+
+## Data Source
+
+The dashboard loads metric data from the following endpoint:
+
+```
+GET https://dashboard-api-88av.onrender.com/flat
+```
+
+Expected structure:
+
+```json
+{
+  "metrics": [
+    {
+      "metric": {
+        "__name__": "cpu_usage",
+        "job": "node-exporter"
+      },
+      "chartType": "line",
+      "values": [
+        [timestamp, value],
+        ...
+      ]
+    },
+    ...
+  ]
+}
+```
+
+---
+
+## Metric Interface
+
+```ts
+interface Metric {
+  metric: {
+    __name__: string;
+    job: string;
+  };
+  chartType: string;
+  values: [number, string][];
+}
+```
+
+The `chartType` field determines how the metric will be visualized (`line`, `bar`, etc.).
+
+---
+
+## DashboardComponent
+
+This is the main component responsible for:
+
+- Fetching the metrics list from the `/flat` API
+- Storing and displaying them in a grid layout
+- Passing each metric into `ChartWrapperComponent` for rendering
+- Optionally supporting features like filtering, time range, or compare mode
+
+---
+
+## ChartWrapperComponent
+
+Each metric is rendered through `ChartWrapperComponent`, which uses Angular’s `ngSwitch` to dynamically display the appropriate chart type.
+
+Supported chart types include:
+
+- Line
+- Bar
+- Area
+- Scatter
+- Pie
+- Gauge
+- Heatmap
+- Treemap
+- Radar
+- Sankey
+
+---
+
+## Rendering Logic
+
+1. The dashboard fetches the `metrics` array from the backend.
+2. Each metric is passed into `ChartWrapperComponent` from dashboard component.
+3. The wrapper inspects the `chartType` and renders the correct chart.
+4. All charts are displayed in a scrollable grid or stacked layout.
+
+---
+
+## Example Layout
+
+```
+[Chart: CPU Usage (Line)]
+[Chart: Memory (Bar)]
+[Chart: Disk IO (Area)]
+...
+```
+
+Each chart is rendered independently and presented in the order received from the backend.
+
+---
+
+## Features
+
+- Supports multiple chart types out of the box
+- Dynamically renders based on data structure
+- Easily extendable with filtering, comparison, or detail modals
+- Clean UI using Flexbox layout
+
+---
+
+## Summary
+
+The flat dashboard is a lightweight, high-performance view designed to quickly render metric data without nesting or layout complexity. It complements the nested dashboard by offering a simple, panel-based alternative for time-series visualization.
