@@ -19,7 +19,7 @@ export class LineChartComponent implements OnChanges {
 
   generateChartOptions(): void {
     if (!this.values || this.values.length === 0) {
-      this.chartOptions = {}; // Or show empty state
+      this.chartOptions = {};
       return;
     }
 

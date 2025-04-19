@@ -31,7 +31,7 @@ export class HeatmapChartComponent implements OnChanges {
     const xLabels = this.values.map(v =>
       new Date(v[0] * 1000).toLocaleTimeString()
     );
-    const yLabels = ['Metric']; // single-row heatmap for simplicity
+    const yLabels = ['Metric'];
     const heatData = this.values.map((v, i) => [i, 0, parseFloat(v[1])]);
 
     this.chartOptions = {

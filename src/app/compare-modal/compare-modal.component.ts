@@ -6,8 +6,8 @@ import { Component, Input, Output, EventEmitter,OnChanges, SimpleChanges, OnInit
   styleUrls: ['./compare-modal.component.css']
 })
 export class CompareModalComponent implements OnChanges,OnInit {
-  @Input() compareList: string[] = []; // Shown charts
-  @Input() selectedCompareList: string[] = []; // Multi-select sync
+  @Input() compareList: string[] = [];
+  @Input() selectedCompareList: string[] = [];
   @Input() chartOverrides: Record<string, string> = {};
   @Input() chartTypes: string[] = [];
   @Input() allMetricNames: string[] = [];

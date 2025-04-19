@@ -30,7 +30,7 @@ export class RadarChartComponent implements OnChanges {
 
     const indicators = this.values.map(v => ({
       name: new Date(v[0] * 1000).toLocaleTimeString(),
-      max: max + 10 // buffer for radar scale
+      max: max + 10 
     }));
 
     this.chartOptions = {

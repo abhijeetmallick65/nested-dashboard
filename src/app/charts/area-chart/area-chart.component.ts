@@ -19,7 +19,7 @@ export class AreaChartComponent implements OnChanges {
 
   generateChartOptions(): void {
     if (!this.values || this.values.length === 0) {
-      this.chartOptions = {}; // fallback
+      this.chartOptions = {};
       return;
     }
 

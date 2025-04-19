@@ -19,7 +19,7 @@ export class BarChartComponent implements OnChanges {
 
   generateChartOptions(): void {
     if (!this.values || this.values.length === 0) {
-      this.chartOptions = {}; // Empty state fallback
+      this.chartOptions = {}; 
       return;
     }
 

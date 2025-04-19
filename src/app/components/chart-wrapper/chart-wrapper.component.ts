@@ -6,7 +6,7 @@ import { Component, Input ,OnInit} from '@angular/core';
   styleUrls: ['./chart-wrapper.component.css']
 })
 export class ChartWrapperComponent implements OnInit {
-  @Input() chartType!: string;     // 'line', 'bar', 'pie', etc.
+  @Input() chartType!: string;    
   @Input() metricName!: string;
   @Input() values: any[] = [];
   @Input() metric:any;

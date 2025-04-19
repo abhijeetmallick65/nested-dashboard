@@ -4,13 +4,13 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 const rangeToSeconds: Record<string, number> = {
-  '5m': 5 * 60,                // 300 seconds
-  '30m': 30 * 60,              // 1800 seconds
-  '1h': 60 * 60,               // 3600 seconds
-  '1d': 24 * 60 * 60,          // 86400 seconds
-  '7d': 7 * 24 * 60 * 60,      // 604800 seconds
-  '30d': 30 * 24 * 60 * 60,    // 2592000 seconds
-  '1y': 365 * 24 * 60 * 60,    // 31536000 seconds
+  '5m': 5 * 60,                
+  '30m': 30 * 60,              
+  '1h': 60 * 60,              
+  '1d': 24 * 60 * 60,         
+  '7d': 7 * 24 * 60 * 60,      
+  '30d': 30 * 24 * 60 * 60,    
+  '1y': 365 * 24 * 60 * 60,   
   'all': Infinity
 };
 
@@ -29,8 +29,8 @@ export class DashboardComponent implements OnInit {
   selectedRange: string = '30d';
   chartOverrides: Record<string, string> = {};
   chartTypes: string[] = [];
-  compareList: string[] = []; // ✅ New: Tracks selected charts for compare
-  showCompareModal: boolean = false; // ✅ Modal control
+  compareList: string[] = []; 
+  showCompareModal: boolean = false;
 
   constructor(private dataService: DataService) {}
 
